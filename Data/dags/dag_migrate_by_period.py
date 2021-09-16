@@ -1,6 +1,6 @@
 """Each table to migrate is a migration unit. There is a function to create the tasks for each migration. This
 function is called by another function that returns a SubDag. And finally, the function that creates a SubDag is
-called from a SubDagOperator within the maing DAG
+called from a SubDagOperator within the main DAG
 """
 import logging
 from pathlib import Path
@@ -35,7 +35,6 @@ default_args = {
 
 
 def get_date_range(start_date, end_date, period):
-    # fixed frequency on month start MS now, table ods still failing sys out on agg by year
     freq_by = {
         "day": "D",
         "week": "W",
@@ -78,8 +77,8 @@ file_format_01 = """(type = csv
 # 7 and 8. Use this feature for heavy tables that need to be split.
 migrations = {
     "mig_00": {
-        "source": ("public", "ods_coupons_catalog_historic"),
-        "target": ("public", "ods_coupons_catalog_historic"),
+        "source": ("public", "table_name"),
+        "target": ("public", "table_name"),
         "unload_options": unload_options_01,
         "file_format": file_format_01,
         "include_load_datetime": False,

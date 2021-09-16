@@ -65,21 +65,6 @@ def convert_statement_from_redshift_to_snowflake(query):
     return new_query
 
 
-def get_primary_keys_query(schema, table):
-    return f"""
-            SELECT
-              att.attname
-            FROM pg_index ind, pg_class cl, pg_attribute att
-            WHERE
-              cl.oid = '{schema}."{table}"'::regclass
-              AND ind.indrelid = cl.oid
-              AND att.attrelid = cl.oid
-              and att.attnum = ANY(string_to_array(textin(int2vectorout(ind.indkey)), ' '))
-              and attnum > 0
-              AND ind.indisprimary
-            order by att.attnum;"""
-
-
 def get_constraint_keys(schema, table, constraint_types, hook, log):
     """
     Returns list of lists with the columns composing the primary/unique keys for the specified schema.table.

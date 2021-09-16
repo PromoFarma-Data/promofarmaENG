@@ -83,8 +83,8 @@ with DAG('migrate_diff_tables',  # migrate tables with different names in redshi
          ) as dag_diff:
 
     migrations = {
-        'mig_01': {'source': ('public', 'sf_emails_sent'),
-                   'target': ('ext', 'sf_emails_sent'),
+        'mig_01': {'source': ('public', 'table_name'),
+                   'target': ('ext', 'table_name_2'),
                    'unload_options': [],  # these will replace the default values
                    'file_format': [],
                    'include_load_datetime': False
