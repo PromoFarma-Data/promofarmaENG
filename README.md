@@ -1,4 +1,4 @@
-# promofarmaENG
+# promofarmaENG by Docmorris
 
 Follow us on:  
 https://medium.com/promofarmaeng  
